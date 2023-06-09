@@ -4,9 +4,15 @@
 public class BreakContinue {
     public static void windowPosSum(int[] a, int n) {
         /** your code here */
-        for (int i = 0; i <= n; i += 1) {
-            while (a[i] > 0) {
-                if
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < 0) {
+                continue;
+            }
+            for (int j = 1; j <= n; j++) {
+                if (i + j >= a.length) {
+                    break;
+                }
+                a[i] += a[i + j];
             }
         }
     }
