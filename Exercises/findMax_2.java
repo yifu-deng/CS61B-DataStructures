@@ -1,3 +1,6 @@
+/**
+ * @author yd
+ */
 public class findMax_2 {
     /** Returns the maximum value from m. */
     public static int max(int[] m) {

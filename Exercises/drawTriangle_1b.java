@@ -1,3 +1,6 @@
+/**
+ * @author yd
+ */
 public class drawTriangle_1b {
     public static void drawTriangle(int N) {
         int col = 0;
