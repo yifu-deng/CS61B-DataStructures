@@ -1,4 +1,4 @@
-public class DrawingaTriangle {
+public class drawTriangle {
     public static void main(String[] args) {
         int col = 0;
         int row = 0;
