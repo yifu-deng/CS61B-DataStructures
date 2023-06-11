@@ -124,7 +124,7 @@ public class Model extends Observable {
         boolean changed;
         changed = false;
 
-        // TODO: Modify this.board (and perhaps this.score) to account
+        // Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
 
@@ -144,6 +144,8 @@ public class Model extends Observable {
                 }
                 // Get the next tile in the same column
                 Tile nextTile = board.tile(col, nextRow);
+//                System.out.print("nextRow:");
+//                System.out.println(nextRow);
                 // If the current tile is null or has the same value as the next tile
                 if (tile == null || tile.value() == nextTile.value()) {
                     // Set the changed flag to true
@@ -151,9 +153,11 @@ public class Model extends Observable {
                     // If the move is successful, add the value of the next tile to the score
                     if (board.move(col, row, nextTile)) {
                         score += nextTile.value() * 2;
+//                        System.out.println(score);
                     } else {
                         // If the move is not successful, move the current row down by one
                         row++;
+//                        System.out.println(row);
                     }
                 }
             }
