@@ -124,37 +124,35 @@ public class Model extends Observable {
         boolean changed;
         changed = false;
 
-        // Modify this.board (and perhaps this.score) to account
+        // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
 
         board.setViewingPerspective(side);
 
         int size = board.size();
-        // Traverse each column of the board
         for (int col = 0; col < size; col++) {
-            // Process each tile from bottom to top
+            // Iterate over each row in reverse order
             for (int row = size - 1; row >= 0; row--) {
                 // Get the tile at the current position
                 Tile tile = board.tile(col, row);
-                // Get the row number of the next tile that this tile can move to
+                // Get the row of the next tile in the same column
                 int nextRow = nextTileRow(col, row);
-                // If this tile cannot move anymore, break out of the loop
+                // If there is no next tile, break out of the loop
                 if (nextRow == -1) {
                     break;
                 }
-                // Get the next tile that this tile can move to
+                // Get the next tile in the same column
                 Tile nextTile = board.tile(col, nextRow);
-                // If this tile is null or has the same value as the next tile, move it up
+                // If the current tile is null or has the same value as the next tile
                 if (tile == null || tile.value() == nextTile.value()) {
-                    // Mark the board as changed
+                    // Set the changed flag to true
                     changed = true;
-                    // Move the tile to the next position
+                    // If the move is successful, add the value of the next tile to the score
                     if (board.move(col, row, nextTile)) {
-                        // Increase the score by the value of the merged tile
                         score += nextTile.value() * 2;
                     } else {
-                        // If the tile cannot move, skip the next tile
+                        // If the move is not successful, move the current row down by one
                         row++;
                     }
                 }
@@ -171,11 +169,11 @@ public class Model extends Observable {
     }
 
     public int nextTileRow(int col, int row) {
-        // Check each row above the current row
+        // Iterate over each row above the current row in reverse order
         for (int i = row - 1; i >= 0; i--) {
             // Get the tile at the current position
             Tile tile = board.tile(col, i);
-            // If the tile is not null, return its row number
+            // If the tile is not null, return the row number
             if (tile != null) {
                 return i;
             }
