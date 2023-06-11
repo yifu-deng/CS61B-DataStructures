@@ -131,17 +131,57 @@ public class Model extends Observable {
         board.setViewingPerspective(side);
 
         int size = board.size();
+        // Traverse each column of the board
         for (int col = 0; col < size; col++) {
-
+            // Process each tile from bottom to top
+            for (int row = size - 1; row >= 0; row--) {
+                // Get the tile at the current position
+                Tile tile = board.tile(col, row);
+                // Get the row number of the next tile that this tile can move to
+                int nextRow = nextTileRow(col, row);
+                // If this tile cannot move anymore, break out of the loop
+                if (nextRow == -1) {
+                    break;
+                }
+                // Get the next tile that this tile can move to
+                Tile nextTile = board.tile(col, nextRow);
+                // If this tile is null or has the same value as the next tile, move it up
+                if (tile == null || tile.value() == nextTile.value()) {
+                    // Mark the board as changed
+                    changed = true;
+                    // Move the tile to the next position
+                    if (board.move(col, row, nextTile)) {
+                        // Increase the score by the value of the merged tile
+                        score += nextTile.value() * 2;
+                    } else {
+                        // If the tile cannot move, skip the next tile
+                        row++;
+                    }
+                }
+            }
         }
 
-        board.setViewingPerspective(side.North);
+        board.setViewingPerspective(Side.NORTH);
 
         checkGameOver();
         if (changed) {
             setChanged();
         }
         return changed;
+    }
+
+    public int nextTileRow(int col, int row) {
+        // Check each row above the current row
+        for (int i = row - 1; i >= 0; i--) {
+            // Get the tile at the current position
+            Tile tile = board.tile(col, i);
+            // If the tile is not null, return its row number
+            if (tile != null) {
+                return i;
+            }
+        }
+        // If no tile is found, return -1
+        return -1;
     }
 
     /**
