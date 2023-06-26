@@ -66,22 +66,22 @@ public class LinkedListDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T firstNode = sentinel.next.item;
+        T firstItem = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
         size--;
-        return firstNode;
+        return firstItem;
     }
 
     public T removeLast(){
         if (isEmpty()) {
             return null;
         }
-        T lastNode = sentinel.prev.item;
+        T lastItem = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next = sentinel;
         size--;
-        return lastNode;
+        return lastItem;
     }
 
     public T get(int index){
