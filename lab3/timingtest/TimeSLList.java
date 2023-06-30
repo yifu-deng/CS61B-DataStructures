@@ -44,7 +44,7 @@ public class TimeSLList {
                 N.getLast();
             }
             double time = sw.elapsedTime();
-            Ns.addLast(Ns.size());
+            Ns.addLast(testLength);
             times.addLast(time);
             opCounts.addLast(ops);
         }

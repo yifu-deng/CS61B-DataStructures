@@ -29,7 +29,7 @@ public class TimeAList {
 
         Stopwatch sw = new Stopwatch();
         int testLength = 1000;
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 8; i++) {
             if (i > 0) {
                 testLength *= 2;
             }
