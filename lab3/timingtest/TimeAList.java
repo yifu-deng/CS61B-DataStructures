@@ -29,17 +29,19 @@ public class TimeAList {
         AList<Integer> opCounts = new AList<>();
 
         Stopwatch sw = new Stopwatch();
-        int tick = 0;
-        int ops = 0;
-        for (int i = 0; i < 1024000; i += 1) {
-            N.addLast(i);
-            ops += 1;
-            if (N.size() == Math.pow(2, tick) * 1000) {
-                Ns.addLast(N.size());
-                times.addLast(sw.elapsedTime());
-                opCounts.addLast(ops);
-                tick += 1;
+        int[] testSizes = {1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 10000000};
+
+        for (int size: testSizes) {
+            for (int i = 0; i < size; i++) {
+                N.addLast(i);
             }
+
+            double time = sw.elapsedTime();
+            int ops = size;
+
+            Ns.addLast(size);
+            times.addLast(time);
+            opCounts.addLast(ops);
         }
         printTimingTable(Ns, times, opCounts);
     }
