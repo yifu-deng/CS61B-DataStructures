@@ -2,9 +2,9 @@ package deque;
 
 public class LinkedListDeque<T> {
     public class TNode {
-        public TNode prev;
-        public T item;
-        public TNode next;
+        private TNode prev;
+        private T item;
+        private TNode next;
 
         public TNode(T i, TNode p, TNode n) {
             prev = p;
