@@ -1,7 +1,7 @@
 package deque;
 
 public class LinkedListDeque<T> {
-    public class TNode {
+    private class TNode {
         private TNode prev;
         private T item;
         private TNode next;
@@ -13,18 +13,16 @@ public class LinkedListDeque<T> {
         }
     }
 
-    private final TNode sentinel;
+    private final TNode sentinel = new TNode(null,null,null);
     private int size;
 
     public LinkedListDeque() {
-        sentinel = new TNode(null, null, null);
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         size = 0;
     }
 
-    private LinkedListDeque(T x) {
-        sentinel = new TNode(null, null, null);
+    public LinkedListDeque(T x) {
         sentinel.next = new TNode(x, sentinel, sentinel);
         sentinel.prev = sentinel.next;
         size = 1;
@@ -34,14 +32,14 @@ public class LinkedListDeque<T> {
         TNode firstNode = new TNode(item, sentinel, sentinel.next);
         sentinel.next.prev = firstNode;
         sentinel.next = firstNode;
-        size++;
+        size += 1;
     }
 
     public void addLast(T item) {
         TNode lastNode = new TNode(item, sentinel.prev, sentinel);
         sentinel.prev.next = lastNode;
         sentinel.prev = lastNode;
-        size++;
+        size += 1;
     }
 
     public boolean isEmpty() {

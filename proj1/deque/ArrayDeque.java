@@ -12,7 +12,7 @@ public class ArrayDeque<T> {
         nextLast = 4;
     }
 
-    private ArrayDeque(T item) {
+    public ArrayDeque(T item) {
         items[3] = item;
         size = 1;
         nextFirst = 2;
