@@ -82,7 +82,7 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] newItems = (T[]) new Object[capacity];
-        int startIndex = (nextFirst + 1) % items.length;
+        int startIndex = Math.abs(capacity - size) / 2;
         System.arraycopy(items, nextFirst + 1, newItems, startIndex, size);
         items = newItems;
         nextFirst = startIndex - 1;
