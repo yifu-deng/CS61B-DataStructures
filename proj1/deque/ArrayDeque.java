@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
         size += 1;
         nextFirst -= 1;
         if (nextFirst == -1) {
-            resize(size * 2);
+            resize(items.length * 2);
         }
     }
 
@@ -33,7 +33,7 @@ public class ArrayDeque<T> {
         size += 1;
         nextLast += 1;
         if (nextLast == items.length) {
-            resize(size * 2);
+            resize(items.length * 2);
         }
     }
 
@@ -42,7 +42,7 @@ public class ArrayDeque<T> {
     }
 
     public boolean isEmpty() {
-        return items.length == 0;
+        return size() == 0;
     }
 
     public void printDeque() {
@@ -56,7 +56,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        if ((size < items.length / 4) && (size > 8)) {
+        if ((size < items.length / 4) && (size > 4)) {
             resize(items.length / 2);
         }
         nextFirst += 1;
@@ -70,7 +70,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        if ((size < items.length / 4) && (size > 8)) {
+        if ((size < items.length / 4) && (size > 4)) {
             resize(items.length / 2);
         }
         nextLast -= 1;
