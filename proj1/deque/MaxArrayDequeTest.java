@@ -28,11 +28,31 @@ public class MaxArrayDequeTest {
     }
 
     @Test
-    public void maxWithComparatorTest() {
+    public void maxStringLength() {
         Comparator<String> cmp = new Comparator<>() {
             @Override
             public int compare(String strA, String strB) {
                 return strA.length() - strB.length();
+            }
+        };
+
+
+        MaxArrayDeque<String> deque = new MaxArrayDeque<>(cmp);
+
+        deque.addLast("apple");
+        deque.addLast("cherry");
+        deque.addLast("banana");
+        deque.addLast("date");
+
+        assertEquals("cherry", deque.max());
+    }
+
+    @Test
+    public void maxWithComparatorTest() {
+        Comparator<String> cmp = new Comparator<>() {
+            @Override
+            public int compare(String strA, String strB) {
+                return strA.compareTo(strB);
             }
         };
 
@@ -43,7 +63,7 @@ public class MaxArrayDequeTest {
         deque.addLast("cherry");
         deque.addLast("date");
 
-        assertEquals("banana", deque.max());
+        assertEquals("date", deque.max());
     }
 
     @Test
