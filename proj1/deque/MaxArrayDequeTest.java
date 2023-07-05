@@ -21,7 +21,7 @@ public class MaxArrayDequeTest {
 
         deque.addLast(5);
         deque.addLast(2);
-        deque.addLast(7);
+        deque.addFirst(7);
         deque.addLast(1);
 
         assertEquals(7, (int) deque.max());
