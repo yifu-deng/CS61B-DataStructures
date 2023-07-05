@@ -1,6 +1,8 @@
 package deque;
 
-public class ArrayDeque<T> {
+import afu.org.checkerframework.checker.oigj.qual.O;
+
+public class ArrayDeque<T> implements Deque<T> {
     private T[] items = (T[]) new Object[8];
     private int size;
     private int nextFirst;
@@ -19,6 +21,7 @@ public class ArrayDeque<T> {
         nextLast = 4;
     }
 
+    @Override
     public void addFirst(T item) {
         items[nextFirst] = item;
         size += 1;
@@ -28,6 +31,7 @@ public class ArrayDeque<T> {
         }
     }
 
+    @Override
     public void addLast(T item) {
         items[nextLast] = item;
         size += 1;
@@ -37,14 +41,12 @@ public class ArrayDeque<T> {
         }
     }
 
+    @Override
     public int size() {
         return size;
     }
 
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
+    @Override
     public void printDeque() {
         for (int i = 0; i < size; i++) {
             System.out.print(i + "");
@@ -52,6 +54,7 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
+    @Override
     public T removeFirst() {
         if (isEmpty()) {
             return null;
@@ -66,6 +69,7 @@ public class ArrayDeque<T> {
         return item;
     }
 
+    @Override
     public T removeLast() {
         if (isEmpty()) {
             return null;
@@ -89,6 +93,7 @@ public class ArrayDeque<T> {
         nextLast = startIndex + size;
     }
 
+    @Override
     public T get(int index) {
         if (index < 0 || index >= size) {
             return null;
