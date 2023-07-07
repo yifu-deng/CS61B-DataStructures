@@ -99,5 +99,4 @@ public class ArrayDeque<T> implements Deque<T> {
         int itemIndex = nextFirst + 1 + index;
         return items[itemIndex];
     }
-
 }
