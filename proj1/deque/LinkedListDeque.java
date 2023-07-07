@@ -22,7 +22,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T x) {
+    private LinkedListDeque(T x) {
         sentinel.next = new TNode(x, sentinel, sentinel);
         sentinel.prev = sentinel.next;
         size = 1;

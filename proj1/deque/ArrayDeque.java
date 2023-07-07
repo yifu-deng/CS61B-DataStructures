@@ -12,7 +12,7 @@ public class ArrayDeque<T> implements Deque<T> {
         nextLast = 4;
     }
 
-    public ArrayDeque(T item) {
+    private ArrayDeque(T item) {
         items[3] = item;
         size = 1;
         nextFirst = 2;
@@ -47,7 +47,7 @@ public class ArrayDeque<T> implements Deque<T> {
     @Override
     public void printDeque() {
         for (int i = 0; i < size; i++) {
-            System.out.print(i + "");
+            System.out.print(i);
         }
         System.out.println();
     }
