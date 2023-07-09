@@ -3,9 +3,10 @@ package deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListDeque<T> implements Deque<T>,Iterable<T> {
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private final TNode sentinel = new TNode(null, null, null);
     private int size;
+
     public LinkedListDeque() {
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
@@ -134,7 +135,7 @@ public class LinkedListDeque<T> implements Deque<T>,Iterable<T> {
 
         public T next() {
             if (!hasNext()) {
-                throw new NoSuchElementException();
+                throw new NoSuchElementException("There is no next one.");
             }
             T item = get(wizPos);
             wizPos += 1;

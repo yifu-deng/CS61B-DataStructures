@@ -120,12 +120,11 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
         public T next() {
             if (!hasNext()) {
-                throw new NoSuchElementException();
+                throw new NoSuchElementException("There is no next one.");
             }
             T item = get(wizPos);
             wizPos += 1;
             return item;
         }
-
     }
 }
