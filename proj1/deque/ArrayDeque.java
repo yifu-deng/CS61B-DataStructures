@@ -100,6 +100,30 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return new ArrayDequeIterator();
     }
 
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof ArrayDeque)) {
+            return false;
+        }
+        ArrayDeque<T> oa = (ArrayDeque<T>) o;
+        if (oa.size() != this.size()) {
+            return false;
+        }
+        int i = 0;
+        for (T item : this) {
+            if (item != oa.get(i)) {
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+
     private class ArrayDequeIterator implements Iterator<T> {
         private int wizPos;
 
