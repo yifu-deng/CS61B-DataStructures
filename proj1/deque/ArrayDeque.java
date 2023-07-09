@@ -1,8 +1,9 @@
 package deque;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayDeque<T> implements Deque<T> {
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private T[] items = (T[]) new Object[8];
     private int size;
     private int nextFirst;
@@ -14,7 +15,7 @@ public class ArrayDeque<T> implements Deque<T> {
         nextLast = 4;
     }
 
-    public ArrayDeque(T item) {
+    private ArrayDeque(T item) {
         items[3] = item;
         size = 1;
         nextFirst = 2;
@@ -103,13 +104,13 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     public Iterator<T> iterator() {
-        return new ArrayIterator();
+        return new ArrayDequeIterator();
     }
 
-    private class ArrayIterator implements Iterator<T> {
+    private class ArrayDequeIterator implements Iterator<T> {
         private int wizPos;
 
-        public ArrayIterator() {
+        private ArrayDequeIterator() {
             wizPos = 0;
         }
 
@@ -121,8 +122,8 @@ public class ArrayDeque<T> implements Deque<T> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            T item = items[wizPos];
-            wizPos++;
+            T item = get(wizPos);
+            wizPos += 1;
             return item;
         }
 

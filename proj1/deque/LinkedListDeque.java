@@ -1,23 +1,11 @@
 package deque;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListDeque<T> implements Deque<T> {
-    private class TNode {
-        private TNode prev;
-        private final T item;
-        private TNode next;
-
-        public TNode(T i, TNode p, TNode n) {
-            prev = p;
-            item = i;
-            next = n;
-        }
-    }
-
+public class LinkedListDeque<T> implements Deque<T>,Iterable<T> {
     private final TNode sentinel = new TNode(null, null, null);
     private int size;
-
     public LinkedListDeque() {
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
@@ -101,7 +89,7 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     }
 
-    public T getRecursive(int index) {
+    private T getRecursive(int index) {
         if (index < 0 || index > size) {
             return null;
         } else {
@@ -118,13 +106,25 @@ public class LinkedListDeque<T> implements Deque<T> {
     }
 
     public Iterator<T> iterator() {
-        return new LinkedListIterator();
+        return new LinkedListDequeIterator();
     }
 
-    private class LinkedListIterator implements Iterator<T> {
+    private class TNode {
+        private final T item;
+        private TNode prev;
+        private TNode next;
+
+        public TNode(T i, TNode p, TNode n) {
+            prev = p;
+            item = i;
+            next = n;
+        }
+    }
+
+    private class LinkedListDequeIterator implements Iterator<T> {
         private int wizPos;
 
-        public LinkedListIterator() {
+        private LinkedListDequeIterator() {
             wizPos = 0;
         }
 
@@ -132,16 +132,13 @@ public class LinkedListDeque<T> implements Deque<T> {
             return wizPos < size();
         }
 
-        public  T next() {
+        public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            TNode currNode = sentinel.next;
-            for (int i = 0; i < wizPos; i++) {
-                currNode = currNode.next;
-            }
+            T item = get(wizPos);
             wizPos += 1;
-            return currNode.item;
+            return item;
         }
     }
 }
