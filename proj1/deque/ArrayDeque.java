@@ -15,13 +15,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         nextLast = 4;
     }
 
-    public ArrayDeque(T item) {
-        items[3] = item;
-        size = 1;
-        nextFirst = 2;
-        nextLast = 4;
-    }
-
     @Override
     public void addFirst(T item) {
         items[nextFirst] = item;

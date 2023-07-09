@@ -13,12 +13,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T x) {
-        sentinel.next = new TNode(x, sentinel, sentinel);
-        sentinel.prev = sentinel.next;
-        size = 1;
-    }
-
     @Override
     public void addFirst(T item) {
         TNode firstNode = new TNode(item, sentinel, sentinel.next);
@@ -115,7 +109,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         private TNode prev;
         private TNode next;
 
-        public TNode(T i, TNode p, TNode n) {
+        private TNode(T i, TNode p, TNode n) {
             prev = p;
             item = i;
             next = n;
