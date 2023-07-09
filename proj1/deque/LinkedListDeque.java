@@ -1,4 +1,6 @@
 package deque;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedListDeque<T> implements Deque<T> {
     private class TNode {
@@ -115,4 +117,31 @@ public class LinkedListDeque<T> implements Deque<T> {
         }
     }
 
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<T> {
+        private int wizPos;
+
+        public LinkedListIterator() {
+            wizPos = 0;
+        }
+
+        public boolean hasNext() {
+            return wizPos < size();
+        }
+
+        public  T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            TNode currNode = sentinel.next;
+            for (int i = 0; i < wizPos; i++) {
+                currNode = currNode.next;
+            }
+            wizPos += 1;
+            return currNode.item;
+        }
+    }
 }
