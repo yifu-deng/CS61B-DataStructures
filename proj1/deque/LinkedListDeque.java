@@ -104,6 +104,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         return new LinkedListDequeIterator();
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == null) {
             return false;
