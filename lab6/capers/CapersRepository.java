@@ -72,6 +72,5 @@ public class CapersRepository {
         Dog dog = Dog.fromFile(name);
         dog.haveBirthday();
         dog.saveDog();
-//        System.out.println(dog.toString());
     }
 }
