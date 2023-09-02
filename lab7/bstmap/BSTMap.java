@@ -19,14 +19,12 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
             value = v;
         }
     }
-    @Override
     public void clear(){
         root = null;
         size = 0;
     }
 
     /* Returns true if this map contains a mapping for the specified key. */
-    @Override
     public boolean containsKey(K key){
         return containsKey(root, key);
     }
@@ -48,7 +46,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     /* Returns the value to which the specified key is mapped, or null if this
      * map contains no mapping for the key.
      */
-    @Override
     public V get(K key){
         return get(root, key);
     }
@@ -68,13 +65,11 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     }
 
     /* Returns the number of key-value mappings in this map. */
-    @Override
     public int size(){
         return size;
     }
 
     /* Associates the specified value with the specified key in this map. */
-    @Override
     public void put(K key, V value){
         root = put(root, key, value);
         size++;
@@ -97,7 +92,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     /* Returns a Set view of the keys contained in this map. Not required for Lab 7.
      * If you don't implement this, throw an UnsupportedOperationException. */
-    @Override
     public Set<K> keySet() {
         Set<K> set = new HashSet<>();
         keySet(root, set);
@@ -160,7 +154,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     /* Removes the entry for the specified key only if it is currently mapped to
      * the specified value. Not required for Lab 7. If you don't implement this,
      * throw an UnsupportedOperationException.*/
-    @Override
     public V remove(K key, V value) {
         if (containsKey(key) && get(key) == value) {
             root = remove(root, key);
@@ -170,7 +163,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         return null;
     }
 
-    @Override
     public Iterator<K> iterator() {
         return keySet().iterator();
     }
